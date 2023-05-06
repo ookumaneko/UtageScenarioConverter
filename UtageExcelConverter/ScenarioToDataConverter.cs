@@ -91,16 +91,18 @@ namespace UtageExcelConverter
                 {
                     // todo: キャラ名変換
                     ConvertCharaToID (currentDataCommand, in line);
+                    currentDataCommand.Type = CommandType.Text;
+                    currentDataCommand.Command = Defines._COMMAND_TEXT;
                     continue;
                 }
 
                 // <コマンド>
-                /*if (HasTextInArray (in line, in _COMMAND_START))
+                if (HasTextInArray (in line, in _COMMAND_START))
                 {
                     //isConte = false;
                     ProcessCommands (in line, currentFile, currentDataCommand);
                     continue;
-                }*/
+                }
 
                 /*// 字コンテ中の場合はテキスト本体は飛ばしたい
                 if (isConte)
@@ -121,6 +123,13 @@ namespace UtageExcelConverter
                 }
 
                 currentDataCommand.Text += line;
+
+                // 1度変えればおｋ
+                if (currentDataCommand.Type != CommandType.Text)
+                {
+	                currentDataCommand.Type = CommandType.Text;
+	                currentDataCommand.Command = Defines._COMMAND_TEXT;
+                }
             }
 
             OnFileEnd(outputData, currentFile, currentDataCommand);
@@ -134,7 +143,6 @@ namespace UtageExcelConverter
             currentData.Arg1 = chara;
         }
         
-        /*
         private static void ProcessCommands (in string line, DataFile currentFile, DataCommand currentData)
 		{
 			var command = RemoveTextInArray (line, in _COMMAND_START);
@@ -148,7 +156,7 @@ namespace UtageExcelConverter
 			}
 			//isConte = false;
 
-			// 選択肢 <選択...>
+			/*// 選択肢 <選択...>
 			if (command.Contains (_COMMAND_SELECTION_TEXT))
 			{
 				// 空白消す
@@ -208,12 +216,33 @@ namespace UtageExcelConverter
 			if (hasCommand)
 			{
 				return;
-			}
+			}*/
 			
 			// ...他有れば足す
+			
+			// 改行
+			if (command == Defines._COMMAND_LINEBREAK)
+			{
+				currentFile.Commands.Add (CommandCreator.CreateLineBreak());
+				currentData.Reset ();
+				return;
+			}
+
+			else if (command.Contains(Defines._COMMAND_FADE_IN))
+			{
+				currentFile.Commands.Add (CommandCreator.CreateFadeIn());
+				currentData.Reset ();
+				return;	
+			}
+			
+			else if (command.Contains(Defines._COMMAND_FADE_OUT))
+			{
+				currentFile.Commands.Add (CommandCreator.CreateFadeOut());
+				currentData.Reset ();
+				return;
+			}
 		}
-*/
-        
+
         private void OnFileEnd(DataConvert outputData, DataFile currentFile, DataCommand currentData)
         {
 	        // 溜まってるテキストを先に書き出しておく

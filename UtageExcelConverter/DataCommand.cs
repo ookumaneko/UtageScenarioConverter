@@ -15,6 +15,7 @@
         public string Voice = string.Empty;
         public string WindowType = string.Empty;
         public string English = string.Empty;
+        public CommandType Type = CommandType.None;
         public bool IsComment = false;
         
         public DataCommand ()
@@ -38,6 +39,7 @@
             WindowType = source.WindowType;
             English = source.English;
             IsComment = source.IsComment;
+            Type = source.Type;
         }
 
         public void Reset()
@@ -56,6 +58,7 @@
             WindowType = string.Empty;
             English = string.Empty;
             IsComment = false;
+            Type = CommandType.None;
         }
 
         public bool IsEmpty()
@@ -73,6 +76,7 @@
                 && string.IsNullOrWhiteSpace(Voice)
                 && string.IsNullOrWhiteSpace(WindowType)
                 && string.IsNullOrWhiteSpace(English)
+                && Type == CommandType.None
                 );
         }
     }

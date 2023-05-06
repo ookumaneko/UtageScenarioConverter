@@ -87,6 +87,21 @@ namespace UtageExcelConverter
         
         private void WriteCommand(DataCommand command, ParamSheet sheet, ParamConvert convert)
         {
+            switch (command.Type)
+            {
+                case CommandType.Text:
+                case CommandType.FadeIn:
+                case CommandType.FadeOut:                    
+                    WriteCommandToCell(command, sheet, convert);
+                    return;
+                case CommandType.NewLine:
+                    sheet.Row++;
+                    return;
+            }
+        }
+
+        private void WriteCommandToCell(DataCommand command, ParamSheet sheet, ParamConvert convert)
+        {
             NPOIUtility.WriteToCell(sheet.Sheet, (int)ColumnType.Command, sheet.Row, command.Command);
             NPOIUtility.WriteToCell(sheet.Sheet, (int)ColumnType.Arg1, sheet.Row, command.Arg1);
             NPOIUtility.WriteToCell(sheet.Sheet, (int)ColumnType.Arg2, sheet.Row, command.Arg2);

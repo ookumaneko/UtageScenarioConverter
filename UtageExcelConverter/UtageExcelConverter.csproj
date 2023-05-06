@@ -134,6 +134,8 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="CommandCreator.cs" />
+        <Compile Include="CommandType.cs" />
         <Compile Include="DataConvert.cs" />
         <Compile Include="Converter.cs" />
         <Compile Include="DataFile.cs" />
