@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtageExcelConverter", "UtageExcelConverter\UtageExcelConverter.csproj", "{580EF02D-8256-4E3A-B4B5-94742517292B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{580EF02D-8256-4E3A-B4B5-94742517292B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{580EF02D-8256-4E3A-B4B5-94742517292B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{580EF02D-8256-4E3A-B4B5-94742517292B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{580EF02D-8256-4E3A-B4B5-94742517292B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
